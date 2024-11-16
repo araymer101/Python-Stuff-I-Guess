@@ -6,7 +6,7 @@ import sys
 import threading
 Banned_User_List = ["John_Doe"]
 Admin_List = ['Joe_Doe']
-
+Past_Usernames = ['John_Doe']
 user_username = input("Set your username: ")
 os.system('cls' if os.name == 'nt' else 'clear')
 print("Press 'Q' to enter a message. Wait for the chat to start.")
@@ -75,9 +75,10 @@ def bar(stop_event): #The other people chatting
             username = random.choice(name1)+random.choice(name2)
             username2 = random.choice(name1)+random.choice(name2)
             username3 = random.choice(name1)+random.choice(name2)
+            past_username = str(random.choice(Past_Usernames))
             random_var = [str(random.choice(food)), str(random.choice(thing)), last_username]
             random_username = [username2, username3, last_username, user_username]
-            random_username_not_user = [username2, username3, last_username]
+            random_username_not_user = [username2, username3, last_username, past_username]
             pick_username = [username, str(random.choice(random_username_not_user))]
             message = ['I like '+str(random.choice(random_var))+'!', 
             'This is a message!', 
@@ -328,6 +329,7 @@ def bar(stop_event): #The other people chatting
                     #print(f"{1}{random_color}{overall_username}\033[0m: {said_thing}")
                 else:
                     print(f"{random_color}{overall_username}\033[0m: {said_thing}")
+                Past_Usernames.append(overall_username)
             else:
                 print("\033[90mUser message has been muted.\033[0m")
             print(" ")
